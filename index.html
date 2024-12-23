@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism Login Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Login Form -->
+  <div class="wrapper" id="loginWrapper">
+    <form id="loginForm" action="#" onsubmit="return displayMessage()">
+      <h2>Login</h2>
+      <div class="input-field">
+        <input type="text" id="email" required autocomplete="off" name="dummyEmail">
+        <label>Enter your email</label>
+      </div>
+      <div class="input-field">
+        <input type="password" id="password" required autocomplete="off" name="dummyPassword">
+        <label>Enter your password</label>
+      </div>
+      <div class="forget">
+        <label for="remember">
+          <input type="checkbox" id="remember" autocomplete="off">
+          <p>Remember me</p>
+        </label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button type="submit">Log In</button>
+      <div class="register">
+        <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register</a></p>
+      </div>
+    </form>
+    <div id="message" style="display:none; color: white; margin-top: 20px;"></div>
+  </div>
+  <!-- Registration Form -->
+  <div class="wrapper" id="registerWrapper" style="display:none;">
+    <form id="registerForm" action="#" onsubmit="return displayRegisterMessage()">
+      <h2>Register</h2>
+      <div class="input-field">
+        <input type="text" id="regEmail" required autocomplete="off" name="dummyRegEmail">
+        <label>Enter your email</label>
+      </div>
+      <div class="input-field">
+        <input type="password" id="regPassword" required autocomplete="off" name="dummyRegPassword">
+        <label>Create a new password</label>
+      </div>
+      <div class="input-field">
+        <input type="password" id="confirmPassword" required autocomplete="off" name="dummyConfirmPassword">
+        <label>Confirm your password</label>
+      </div>
+      <button type="submit">Register</button>
+      <div class="register">
+        <p>Already have an account? <a href="#" onclick="showLoginForm()">Log In</a></p>
+      </div>
+    </form>
+    <div id="registerMessage" style="display:none; color: white; margin-top: 20px;"></div>
+  </div>
+
+  <script>
+  // Display Login Success Message
+    function displayMessage() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      if (email && password) {
+        document.getElementById('message').innerText = 'Login Successful';
+        document.getElementById('message').style.display = 'block';
+      } else {
+        document.getElementById('message').innerText = 'Please fill in all fields';
+        document.getElementById('message').style.display = 'block';
+      }
+      return false; // Prevent form submission for demonstration purposes
+    }
+
+  // Display Registration Success Message
+    function displayRegisterMessage() {
+      const email = document.getElementById("regEmail").value;
+      const password = document.getElementById("regPassword").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      if (email && password && confirmPassword) {
+        if (password === confirmPassword) {
+          document.getElementById("registerMessage").innerText = "Registration Successful";
+        } else {
+          document.getElementById("registerMessage").innerText = "Passwords do not match";
+        }
+      } else {
+        document.getElementById("registerMessage").innerText = "Please fill in all fields";
+      }
+      document.getElementById("registerMessage").style.display = "block";
+      return false; // Prevent form submission for demonstration purposes
+    }
+
+  // Show Registration Form
+    function showRegisterForm() {
+      document.getElementById('loginWrapper').style.display = 'none';
+      document.getElementById('registerWrapper').style.display = 'block';
+    }
+
+  // Show Login Form
+    function showLoginForm() {
+      document.getElementById('registerWrapper').style.display = 'none';
+      document.getElementById('loginWrapper').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
